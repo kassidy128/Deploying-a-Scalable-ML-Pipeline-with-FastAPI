@@ -36,7 +36,7 @@ cat_features = [
 
 # use the process_data function provided to process the data.
 X_train, y_train, encoder, lb = process_data(
-    X = train,
+    train,
     categorical_features = cat_features,
     label = "salary",
     training = True
@@ -48,7 +48,7 @@ X_test, y_test, _, _ = process_data(
     label="salary",
     training=False,
     encoder=encoder,
-    lb=lb,
+    lb=lb
 )
 
 # use the train_model function to train the model on the training dataset
@@ -79,7 +79,7 @@ for col in cat_features:
     for slicevalue in sorted(test[col].unique()):
         count = test[test[col] == slicevalue].shape[0]
         p, r, fb = performance_on_categorical_slice(
-            data = test,
+            data= test,
             column_name = col,
             slice_value = slicevalue,
             categorical_features = cat_features,

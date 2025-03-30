@@ -21,9 +21,13 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
 
-    model_init = RandomForestClassifier()
-    model = model_init(X_train, y_train)
-
+    model = RandomForestClassifier(
+        n_estimators = 100,
+        max_depth = 10,
+        random_state = 42
+    )
+    
+    model.fit(X_train, y_train)
     return model
 
 
@@ -127,12 +131,12 @@ def performance_on_categorical_slice(
 
     """
     
-    slice = data[data[column_name] == slice_value]
+    data_slice = data[data[column_name] == slice_value]
     X_slice, y_slice, _, _ = process_data(
         # your code here
         # for input data, use data in column given as "column_name", with the slice_value 
         # use training = False
-        X = slice,
+        X = data_slice,
         categorical_features = categorical_features,
         label = label,
         training = False,
